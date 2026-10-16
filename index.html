@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101323">
+  <meta name="description" content="SocialAmAi — connect, share and discover your community.">
+  <title>SocialAmAi — Your people. Your moments.</title>
+  <link rel="stylesheet" href="/styles.css">
+ </head>
+ <body>
+  <div class="app-shell">
+   <header class="topbar">
+    <a class="brand" href="#" data-view="home"><span class="brand-mark">S</span><span>Social<span class="brand-accent">AmAi</span><small>YOUR SOCIAL UNIVERSE</small></span></a> <label class="top-search"><span>⌕</span><input id="globalSearch" placeholder="Search people..." autocomplete="off"></label>
+    <div class="top-actions">
+     <button class="icon-btn" id="themeToggle" title="Toggle theme">☼</button>
+     <button class="icon-btn" id="notificationBtn" title="Notifications">♧<i id="notifDot"></i></button>
+     <button class="avatar avatar-small" id="headerAvatar">G</button>
+    </div>
+   </header>
+   <div class="layout">
+    <aside class="left-rail">
+     <div class="rail-label">MENU</div>
+     <button class="nav-item active" data-view="home"><span>⌂</span> Home</button>
+     <button class="nav-item" data-view="discover"><span>⌕</span> Discover</button>
+     <button class="nav-item" data-view="notifications"><span>♧</span> Notifications</button>
+     <button class="nav-item" data-view="profile"><span>◉</span> My profile</button>
+     <div class="rail-divider"></div>
+     <div class="rail-label">YOUR SPACE</div>
+     <div class="mini-profile">
+      <div class="avatar" id="sideAvatar">G</div>
+      <div>
+       <b id="sideName">Guest creator</b><small id="sideHandle">@guest</small>
+      </div>
+     </div>
+     <button class="nav-item" id="signOutBtn"><span>↪</span> Sign out</button>
+     <div class="rail-note">
+      <span class="spark">✦</span><b>Your voice matters.</b>
+      <p>Share what inspires you and find your people.</p>
+     </div>
+    </aside>
+    <main id="mainContent">
+     <section class="welcome">
+      <span class="eyebrow">A LITTLE MORE CONNECTED</span>
+      <h1>Your people.
+       <br>
+       <em>Your moments.</em></h1>
+      <p>A fresh space to share ideas, celebrate wins and connect with your community.</p>
+     </section>
+     <section class="composer card">
+      <div class="composer-top">
+       <div class="avatar" id="composerAvatar">G</div>
+       <button class="composer-prompt" id="focusComposer">What's on your mind today?</button>
+      </div>
+      <form id="postForm">
+       <textarea name="body" id="postBody" maxlength="2000" placeholder="Share a thought, a moment, or something worth celebrating..." required></textarea>
+       <div class="composer-bottom">
+        <label class="upload-label">＋ Add photo<input type="file" id="postImage" accept="image/png,image/jpeg,image/webp,image/gif" hidden></label><span id="fileName" class="subtle"></span>
+        <button class="primary-btn" type="submit">Share post <span>↗</span></button>
+       </div>
+      </form>
+     </section>
+     <div class="feed-heading">
+      <div>
+       <span class="eyebrow">THE COMMUNITY</span>
+       <h2>Your feed</h2>
+      </div>
+      <button class="soft-btn" id="refreshFeed">↻ Refresh</button>
+     </div>
+     <div id="feed" class="feed-list">
+      <div class="empty-state">Loading your community...</div>
+     </div>
+    </main>
+    <aside class="right-rail">
+     <section class="side-card trend-card">
+      <div class="side-card-head">
+       <span class="eyebrow">DISCOVER</span><span>✦</span>
+      </div>
+      <h3>Find your next connection.</h3>
+      <p>Search creators and follow the people who make your feed better.</p>
+      <button class="outline-btn" data-view="discover">Explore people →</button>
+     </section>
+     <section class="side-card">
+      <div class="side-card-head">
+       <b>Community guidelines</b><span>♡</span>
+      </div>
+      <p class="subtle">Be kind. Respect privacy. Share responsibly. Keep this a welcoming space for everyone.</p>
+     </section>
+     <div class="copyright">
+      © <span id="year"></span> SocialAmAi
+      <br>
+      Made for meaningful connections.
+     </div>
+    </aside>
+   </div>
+  </div>
+  <div class="modal-backdrop" id="authModal">
+   <div class="modal auth-modal">
+    <button class="modal-close" id="authClose">×</button>
+    <div class="brand modal-brand">
+     <span class="brand-mark">S</span><span>Social<span class="brand-accent">AmAi</span><small>FIND YOUR PEOPLE</small></span>
+    </div>
+    <h2 id="authTitle">Welcome back.</h2>
+    <p class="subtle" id="authSubtitle">Sign in to your SocialAmAi community.</p>
+    <div class="auth-tabs">
+     <button class="selected" data-auth="login">Sign in</button>
+     <button data-auth="register">Create account</button>
+    </div>
+    <form id="authForm">
+     <div class="form-field" id="nameField" hidden>
+      <label>Display name</label><input name="displayName" maxlength="50" placeholder="Your name">
+     </div>
+     <div class="form-field" id="usernameField" hidden>
+      <label>Username</label><input name="username" maxlength="24" placeholder="your_username">
+     </div>
+     <div class="form-field">
+      <label id="identityLabel">Email or username</label><input name="identity" autocomplete="username" placeholder="you@example.com" required>
+     </div>
+     <div class="form-field" id="emailField" hidden>
+      <label>Email</label><input name="email" type="email" autocomplete="email" placeholder="you@example.com">
+     </div>
+     <div class="form-field">
+      <label>Password</label><input name="password" type="password" autocomplete="current-password" minlength="10" placeholder="At least 10 characters" required>
+     </div>
+     <p class="form-error" id="authError"></p>
+     <button class="primary-btn full-btn" type="submit" id="authSubmit">Sign in →</button>
+    </form>
+    <p class="legal-note">By continuing, you agree to use the community respectfully.</p>
+   </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="/app.js" defer></script>
+ </body>
+</html>
